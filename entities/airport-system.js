@@ -10,8 +10,8 @@ class Airport {
     moshe = new Student("moshe", "23543436", 600, "MIT")
     jacob = new RegularPassanger("jacob", "984376520", 1200, "Intel", true)
 
-    regularSeats = (Flight.getMaxSeats() * 90) / 100
-    vipSeats = (Flight.getMaxSeats() * 10) / 100
+    regularSeats = (this.budapesht.getMaxSeats() * 90) / 100
+    vipSeats = (this.budapesht.getMaxSeats() * 10) / 100
 
 
 
@@ -51,7 +51,7 @@ updateSeat(flight, ticket){
         flight.TicketsList[this.vipSeats].ownerName = ticket.ownerName 
         this.vipSeats--
     } else {
-         flight.TicketsList[this.regularSeats].ownerName = ticket.ownerName 
+        flight.TicketsList[this.regularSeats].ownerName = ticket.ownerName 
         this.regularSeats--
     }
 }
@@ -66,10 +66,11 @@ buyTicket(passanger, ticket, flight){
     
 }
 
-const airport = new Airport()
-const flight = airport.budapesht
-const passanger = airport.jacob
-passanger.buyTicket(flight.regularTicketPrice)
-const passanger2 = airport.moshe
-console.log(passanger2.buyTicket(flight.VIPTicketPrice))
+// const airport = new Airport()
+// const flight = airport.budapesht
+// const passanger = airport.jacob
+// passanger.buyTicket(flight.regularTicketPrice)
+// const passanger2 = airport.moshe
+// console.log(passanger2.buyTicket(flight.VIPTicketPrice))
 
+export default Airport
