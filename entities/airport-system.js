@@ -3,74 +3,66 @@ import { Student, RegularPassanger } from "./passanger.js";
 import { Ticket } from "./ticket.js";
 import { VIPTicket } from "./ticket.js";
 class Airport {
-    budapesht = new Flight("hungar Airline", "YRT29834", 100, 150, 300)
-    spain = new Flight("hola Madrid", "LEr3284", 300, 500, 700)
-    florida = new Flight("sun Beach", "POI4938759", 1000, 2500, 1200)
 
-    moshe = new Student("moshe", "23543436", 600, "MIT")
-    jacob = new RegularPassanger("jacob", "984376520", 1200, "Intel", true)
-
-    regularSeats = (this.budapesht.getMaxSeats() * 90) / 100
-    vipSeats = (this.budapesht.getMaxSeats() * 10) / 100
-
-
-
-    getSeatsRegular(flight) {
-        const PERCENT = 90
-        return (flight.getMaxSeats() * PERCENT) / 100
+    constructor(regularSeatsNumber, vipSeatsNUmber) {
+        this.regularSeats = regularSeatsNumber
+        this.vipSeats = vipSeatsNUmber
     }
 
-    getSeatsVip(flight) {
-        return flight.getMaxSeats() - this.getSeatsRegular(flight)
-    }
-
-
-    addTickets(flight) {
-        flight.TicketsList.fill(new Ticket("P123", flight.regularTicketPrice, null), 0, this.getSeatsRegular(flight))
-        flight.TicketsList.fill(new VIPTicket("P456", flight.VIPTicketPrice, null), this.getSeatsRegular(flight))
-        return flight.TicketsList
-    }
-
-    checkSeatAvilable(flight, ticket) {
+    checkSeatAvilable(ticket) {
         if (ticket instanceof VIPTicket) {
-            if (this.vipSeats === this.getSeatsVip(flight)) {
+            if (this.vipSeats === 0) {
                 console.log("sorry there are no seats available")
                 return false
             }
         }
-        else{
-            if (this.regularSeats === this.getSeatsRegular(flight)) {
-            console.log("sorry there are no seats available")
-            return false
+        else {
+            if (this.regularSeats === 0) {
+                console.log("sorry there are no seats available")
+                return false
+            }
+        }
+        console.log("congratulations the seat is available")
+        return true
+    }
+
+    updateSeat(flight, ticket) {
+        console.log("the name of the client", ticket.ownerName)
+        let name;
+        if (ticket instanceof VIPTicket) {
+            console.log("the location of the seat", this.vipSeats)
+            name = flight.ticketsList[this.vipSeats]
+            name.ownerName = ticket.ownerName
+            console.log(name.ownerName, "the name in the current seat after purch")
+            this.vipSeats--
+        } else {
+            console.log("the location of the seat", this.regularSeats)
+            name = flight.ticketsList[this.regularSeats]
+            console.log(name.ownerName, "the name in the current seat before purch")
+            name.ownerName = ticket.ownerName
+            console.log(name.ownerName, "the name in the current seat after purch")
+            this.regularSeats--
         }
     }
-    return true
-}
-updateSeat(flight, ticket){
-    if (ticket instanceof VIPTicket){
-        flight.TicketsList[this.vipSeats].ownerName = ticket.ownerName 
-        this.vipSeats--
-    } else {
-        flight.TicketsList[this.regularSeats].ownerName = ticket.ownerName 
-        this.regularSeats--
+
+    buyTicket(passanger, ticket, flight) {
+        if (this.checkSeatAvilable(ticket)) {
+            passanger.updataeAmount(passanger.getDiscount(ticket))
+            this.updateSeat(flight, ticket)
+            console.log("your purched succefully")
+        }
     }
-}
-buyTicket(passanger, ticket, flight){
-    if (this.checkSeatAvilable(flight)){
-    passanger.buyTicket(ticket.price)
-    passanger.updataeAmount(passanger.getDiscount(ticket))
-    this.updateSeat(flight, ticket)
-    console.log("your purched succefully")
-    }
-}
-    
+
 }
 
-// const airport = new Airport()
-// const flight = airport.budapesht
-// const passanger = airport.jacob
-// passanger.buyTicket(flight.regularTicketPrice)
-// const passanger2 = airport.moshe
-// console.log(passanger2.buyTicket(flight.VIPTicketPrice))
+// const spain = new Flight("hola Madrid", "LEr3284", 300, 500, 700)
+// const florida = new Flight("sun Beach", "POI4938759", 1000, 2500, 1200)
+// const jacob = new RegularPassanger("jacob", "984376520", 1200, "Intel", true)
+const budapesht = new Flight("hungar Airline", "YRT29834", 100, 150, 300)
+const moshe = new Student("moshe", "23543436", 600, "MIT")
+const ticket = new Ticket(94875, budapesht.regularTicketPrice, moshe.name)
+const airport = new Airport(budapesht.getSeatsRegular(), budapesht.getSeatsVip())
+console.log(moshe.getDiscount(ticket))
+// airport.buyTicket(moshe, ticket, budapesht)
 
 export default Airport

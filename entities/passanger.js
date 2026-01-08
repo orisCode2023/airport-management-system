@@ -6,20 +6,26 @@ class Passanger {
         this.iDNumber = iDNumber
         this.amountOfMoney = amountOfMoney
     }
-    buyTicket(ticketPrice) {
-        return ticketPrice < this.amountOfMoney
+    checkMoney(ticket) {
+        return ticket.price < this.amountOfMoney
+    }
+// TODO: check if this.getDiscount is good
+    updataeAmount(ticket) {
+        if (this.checkMoney(ticket) === true) {
+            console.log("the money before purch", this.amountOfMoney)
+            this.amountOfMoney -= (ticket.price - this.getDiscount())
+            console.log("your amount updated succefull", this.amountOfMoney)
+        } else {
+            console.log("not in the update function")
+        }
     }
 
-    updataeAmount(ticketPrice) {
-        console.log("your amount updated succefully")
-        this.amountOfMoney -= ticketPrice
-    }
 
 
 }
 export class Student extends Passanger {
-    constructor(name, iDNumber, amountOfMoney, universityName) {
-        super(name, iDNumber, amountOfMoney)
+    constructor(name, idNumber, amountOfMoney, universityName) {
+        super(name, idNumber, amountOfMoney)
         this.universityName = universityName
     }
     getDiscount(ticket) {
@@ -28,6 +34,7 @@ export class Student extends Passanger {
         }
         console.log("you got a discount of 10 percent")
         const discount = 10
+        console.log(ticket.price)
         return (ticket.price * discount) / 100
     }
 }
