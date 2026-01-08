@@ -1,12 +1,17 @@
 class Flight {
     
     #MaximumNumberOfPassengers
-    constructor(flightName, airlineFlightNumber, regularTicketPrice, VIPTicketPrice){
+    constructor(flightName, airlineFlightNumber, regularTicketPrice, VIPTicketPrice, seatNumber){
         this.flightName = flightName
         this.airlineFlightNumber = airlineFlightNumber
         this.regularTicketPrice = regularTicketPrice
         this.VIPTicketPrice = VIPTicketPrice
-        TicketsList = new Array(this.#MaximumNumberOfPassengers)
+        this.#MaximumNumberOfPassengers = seatNumber
+        this.TicketsList = new Array(this.#MaximumNumberOfPassengers)
+        
+    }
+    getMaxSeats(){
+        return this.#MaximumNumberOfPassengers
     }
 }
 
