@@ -9,3 +9,5 @@ class Flight {
         TicketsList = new Array(this.#MaximumNumberOfPassengers)
     }
 }
+
+export default Flight
