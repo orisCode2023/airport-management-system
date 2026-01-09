@@ -9,12 +9,13 @@ class Passanger {
     checkMoney(ticket) {
         return ticket.price < this.amountOfMoney
     }
+    getDiscount(){}
 // TODO: check if this.getDiscount is good
     updataeAmount(ticket) {
         if (this.checkMoney(ticket) === true) {
             console.log("the money before purch", this.amountOfMoney)
-            this.amountOfMoney -= (ticket.price - this.getDiscount())
-            console.log("your amount updated succefull", this.amountOfMoney)
+            this.amountOfMoney -= (ticket.price - this.getDiscount(ticket))
+            console.log("your amount updated succefully", this.amountOfMoney)
         } else {
             console.log("not in the update function")
         }

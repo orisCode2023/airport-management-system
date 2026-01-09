@@ -62,7 +62,5 @@ const budapesht = new Flight("hungar Airline", "YRT29834", 100, 150, 300)
 const moshe = new Student("moshe", "23543436", 600, "MIT")
 const ticket = new Ticket(94875, budapesht.regularTicketPrice, moshe.name)
 const airport = new Airport(budapesht.getSeatsRegular(), budapesht.getSeatsVip())
-console.log(moshe.getDiscount(ticket))
-// airport.buyTicket(moshe, ticket, budapesht)
-
+airport.buyTicket(moshe, ticket, budapesht)
 export default Airport
