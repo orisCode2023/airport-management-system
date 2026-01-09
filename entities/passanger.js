@@ -17,7 +17,7 @@ class Passanger {
             this.amountOfMoney -= (ticket.price - this.getDiscount(ticket))
             console.log("your amount updated succefully", this.amountOfMoney)
         } else {
-            console.log("not in the update function")
+            console.log("sorry you dont have enough money to purch this ticket")
         }
     }
 
@@ -35,7 +35,7 @@ export class Student extends Passanger {
         }
         console.log("you got a discount of 10 percent")
         const discount = 10
-        console.log(ticket.price)
+        console.log("ticket price is", ticket.price)
         return (ticket.price * discount) / 100
     }
 }

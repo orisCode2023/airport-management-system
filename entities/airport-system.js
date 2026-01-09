@@ -47,7 +47,7 @@ class Airport {
 
     buyTicket(passanger, ticket, flight) {
         if (this.checkSeatAvilable(ticket)) {
-            passanger.updataeAmount(passanger.getDiscount(ticket))
+            passanger.updataeAmount(ticket)
             this.updateSeat(flight, ticket)
             console.log("your purched succefully")
         }
