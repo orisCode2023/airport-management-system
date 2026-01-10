@@ -9,8 +9,9 @@ class Passanger {
     checkMoney(ticket) {
         return ticket.price < this.amountOfMoney
     }
-    getDiscount(){}
-// TODO: check if this.getDiscount is good
+    getDiscount(ticket) {
+        return 0
+    }
     updataeAmount(ticket) {
         if (this.checkMoney(ticket) === true) {
             console.log("the money before purch", this.amountOfMoney)
