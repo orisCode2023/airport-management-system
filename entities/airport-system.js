@@ -49,12 +49,4 @@ class Airport {
 
 }
 
-// const spain = new Flight("hola Madrid", "LEr3284", 300, 500, 700)
-// const florida = new Flight("sun Beach", "POI4938759", 1000, 2500, 1200)
-// const jacob = new RegularPassanger("jacob", "984376520", 1200, "Intel", true)
-const budapesht = new Flight("hungar Airline", "YRT29834", 100, 150, 300)
-const moshe = new Student("moshe", "23543436", 600, "MIT")
-const ticket = new Ticket(94875, budapesht.regularTicketPrice, moshe.name)
-const airport = new Airport()
-airport.buyTicket(moshe, ticket, budapesht)
 export default Airport

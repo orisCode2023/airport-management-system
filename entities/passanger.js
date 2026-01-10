@@ -9,9 +9,7 @@ class Passanger {
     checkMoney(ticket) {
         return ticket.price < this.amountOfMoney
     }
-    getDiscount(ticket) {
-        return 0
-    }
+    getDiscount(ticket) {}
     updataeAmount(ticket) {
         if (this.checkMoney(ticket) === true) {
             console.log("the money before purch", this.amountOfMoney)
@@ -31,13 +29,16 @@ export class Student extends Passanger {
         this.universityName = universityName
     }
     getDiscount(ticket) {
+        let discount = 0;
         if (ticket instanceof VIPTicket) {
-            return "sorry cant get discount for this ticket"
+            console.log("sorry cant get discount for this ticket")
+            return discount
+        } else {
+            console.log("you got a discount of 10 percent")
+            discount = 10
+            console.log("ticket price is", ticket.price)
+            return (ticket.price * discount) / 100
         }
-        console.log("you got a discount of 10 percent")
-        const discount = 10
-        console.log("ticket price is", ticket.price)
-        return (ticket.price * discount) / 100
     }
 }
 export class RegularPassanger extends Passanger {
@@ -61,4 +62,3 @@ export class RegularPassanger extends Passanger {
         }
     }
 }
-
